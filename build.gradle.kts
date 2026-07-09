@@ -1,5 +1,5 @@
 plugins {
-  id("uk.gov.justice.hmpps.gradle-spring-boot") version "10.5.4"
+  id("uk.gov.justice.hmpps.gradle-spring-boot") version "10.5.7"
   kotlin("plugin.spring") version "2.4.0"
   kotlin("plugin.jpa") version "2.4.0"
 }
@@ -33,7 +33,7 @@ dependencies {
   implementation("commons-logging:commons-logging:1.4.0")
 
   runtimeOnly("com.h2database:h2:2.4.240")
-  runtimeOnly("org.postgresql:postgresql:42.7.12")
+  runtimeOnly("org.postgresql:postgresql:42.7.13")
   runtimeOnly("org.flywaydb:flyway-database-postgresql")
 
   testImplementation("org.springframework.boot:spring-boot-webtestclient")
