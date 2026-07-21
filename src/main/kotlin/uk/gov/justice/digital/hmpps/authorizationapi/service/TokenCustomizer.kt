@@ -41,8 +41,8 @@ class TokenCustomizer(
     private const val JWT_ID = "jwt_id"
   }
 
-  override fun customize(context: JwtEncodingContext?) {
-    context?.let { jwtEncodingContext ->
+  override fun customize(context: JwtEncodingContext) {
+    context.let { jwtEncodingContext ->
       suppressAudienceClaim(jwtEncodingContext)
 
       if (jwtEncodingContext.getPrincipal<Authentication>() is OAuth2ClientAuthenticationToken) {
@@ -108,8 +108,8 @@ class TokenCustomizer(
       val token: OAuth2ClientCredentialsAuthenticationToken? = context.getAuthorizationGrant()
       token?.let {
         if (it.additionalParameters.containsKey(REQUEST_PARAM_USER_NAME) && isNotEmpty(token.additionalParameters[REQUEST_PARAM_USER_NAME] as String)) {
-          claim("user_name", it.additionalParameters[REQUEST_PARAM_USER_NAME])
-          claim("sub", it.additionalParameters[REQUEST_PARAM_USER_NAME])
+          claim("user_name", it.additionalParameters[REQUEST_PARAM_USER_NAME]!!)
+          claim("sub", it.additionalParameters[REQUEST_PARAM_USER_NAME]!!)
         }
 
         claim("auth_source", fromNullableString(it.additionalParameters[REQUEST_PARAM_AUTH_SOURCE] as String?).source)
@@ -121,8 +121,8 @@ class TokenCustomizer(
       }
 
       claim("client_id", principal.registeredClient?.clientId ?: "Unknown")
-      claim("scope", principal.registeredClient?.scopes)
-      claim("grant_type", context.authorizationGrantType.value)
+      claim("scope", principal.registeredClient?.scopes ?: emptySet<String>())
+      claim("grant_type", context.authorizationGrantType?.value ?: "Unknown")
       claim("jti", oauthJtiGenerator.generateTokenId())
     }
   }

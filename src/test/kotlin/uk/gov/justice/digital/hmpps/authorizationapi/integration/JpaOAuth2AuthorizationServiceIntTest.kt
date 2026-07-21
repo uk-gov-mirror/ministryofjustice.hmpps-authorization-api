@@ -52,7 +52,7 @@ class JpaOAuth2AuthorizationServiceIntTest : IntegrationTestBase() {
     assertNotNull(retrievedByAuthorizationCode)
     assertTrue(oAuth2Authorization == retrievedByAuthorizationCode)
 
-    authorizationService.remove(retrievedByAuthorizationCode)
+    authorizationService.remove(retrievedByAuthorizationCode!!)
     val removed = authorizationService.findById(oAuth2Authorization.id)
     assertNull(removed)
   }
@@ -67,7 +67,7 @@ class JpaOAuth2AuthorizationServiceIntTest : IntegrationTestBase() {
       LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant(),
     )
 
-    return OAuth2Authorization.withRegisteredClient(registeredClient)
+    return OAuth2Authorization.withRegisteredClient(registeredClient!!)
       .id(authorizationId)
       .principalName("testy")
       .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)

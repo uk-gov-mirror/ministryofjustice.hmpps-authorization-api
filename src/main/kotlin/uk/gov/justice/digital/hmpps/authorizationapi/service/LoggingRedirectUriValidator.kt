@@ -15,7 +15,7 @@ class LoggingRedirectUriValidator(private val delegate: Consumer<OAuth2Authoriza
     try {
       delegate.accept(t)
     } catch (e: OAuth2AuthorizationCodeRequestAuthenticationException) {
-      if (e.error.description != null && e.error.description.contains("redirect_uri")) {
+      if (e.error.description != null && e.error.description?.contains("redirect_uri") == true) {
         log.info("redirect_uri error: ${e.error}")
       }
 

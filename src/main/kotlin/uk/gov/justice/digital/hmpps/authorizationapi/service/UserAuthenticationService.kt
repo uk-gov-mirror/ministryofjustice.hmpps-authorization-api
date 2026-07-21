@@ -38,15 +38,15 @@ class UserAuthenticationService(
     }
   }
 
-  override fun remove(authorization: OAuth2Authorization?) {
-    authorization?.let {
+  override fun remove(authorization: OAuth2Authorization) {
+    authorization.let {
       userAuthorizationCodeRepository.deleteAllById(listOf(it.id))
     }
 
     delegateOAuth2AuthorizationService.remove(authorization)
   }
 
-  override fun findById(id: String?): OAuth2Authorization? = delegateOAuth2AuthorizationService.findById(id)
+  override fun findById(id: String): OAuth2Authorization? = delegateOAuth2AuthorizationService.findById(id)
 
-  override fun findByToken(token: String?, tokenType: OAuth2TokenType?): OAuth2Authorization? = delegateOAuth2AuthorizationService.findByToken(token, tokenType)
+  override fun findByToken(token: String, tokenType: OAuth2TokenType?): OAuth2Authorization? = delegateOAuth2AuthorizationService.findByToken(token, tokenType)
 }
