@@ -1,5 +1,5 @@
-#Rotate client script
-##Prerequisites
+# Rotate client script
+## Prerequisites
 
 - Ensure you are using bash version 4 or 5
 - Have HTTPIE installed (https://httpie.io/docs#installation)
@@ -8,7 +8,7 @@
 - All necessary fields completed in the client deployment
 - Have a client which has the role - `ROLE_CLIENT_ROTATION_ADMIN`
 
-##Running the script
+## Running the script
 
 Within a terminal go to the relevant folder where the script is located
 
@@ -28,10 +28,10 @@ Now run
 ```./rotate_clientID_cloudplatform_app.sh <BASE_CLIENT_ID>```
 
 
-##Useful kubectl commands
+## Useful kubectl commands
 
-####manually update secret
+#### manually update secret
 ```kubectl edit secrets <secret> -n <namespace>```
 
-####roll out the manually updated secret
+#### roll out the manually updated secret
 ```kubectl rollout restart deploy <deployment name> -n <namespace>```
