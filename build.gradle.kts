@@ -33,7 +33,6 @@ dependencies {
   runtimeOnly("org.flywaydb:flyway-database-postgresql")
 
   testImplementation("org.springframework.boot:spring-boot-webtestclient")
-  testImplementation("org.springframework.boot:spring-boot-starter-webflux")
   testImplementation("io.jsonwebtoken:jjwt-impl:0.13.0")
   testImplementation("io.jsonwebtoken:jjwt-jackson:0.13.0")
   implementation(kotlin("stdlib"))
